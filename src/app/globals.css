@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Cores base da marca dsGen (UI da ferramenta) */
+  --color-dragonfruit: #ff4f9a;
+  --color-bubblegum: #fa5a64;
+  --color-tiger: #f5642f;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-white-true: #fefefe;
+  --color-white-off: #f8f9fa;
+  --color-black-night: #0e0e0e;
+  --color-black-true: #0a0a09;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Escalas */
+  --color-tiger-50: #fcd4c5;
+  --color-tiger-100: #fbc7b4;
+  --color-tiger-200: #faae93;
+  --color-tiger-300: #f89672;
+  --color-tiger-400: #f77d50;
+  --color-tiger-500: #f5642f;
+  --color-tiger-600: #ce5427;
+  --color-tiger-700: #a74420;
+  --color-tiger-800: #7f3418;
+  --color-tiger-900: #582411;
+
+  --color-bubblegum-50: #fed1d4;
+  --color-bubblegum-100: #fdc4c7;
+  --color-bubblegum-200: #fca9ae;
+  --color-bubblegum-300: #fc8f96;
+  --color-bubblegum-400: #fb747d;
+  --color-bubblegum-500: #fa5a64;
+  --color-bubblegum-600: #d24c54;
+  --color-bubblegum-700: #aa3d44;
+  --color-bubblegum-800: #822f34;
+  --color-bubblegum-900: #5a2024;
+
+  --color-dragonfruit-50: #ffcee3;
+  --color-dragonfruit-100: #ffc0db;
+  --color-dragonfruit-200: #ffa3ca;
+  --color-dragonfruit-300: #ff87ba;
+  --color-dragonfruit-400: #ff6baa;
+  --color-dragonfruit-500: #ff4f9a;
+  --color-dragonfruit-600: #d64281;
+  --color-dragonfruit-700: #ad3669;
+  --color-dragonfruit-800: #852950;
+  --color-dragonfruit-900: #5c1c37;
+
+  --color-grey-100: #ededed;
+  --color-grey-200: #e8e8e8;
+  --color-grey-300: #cccccc;
+  --color-grey-400: #acacac;
+  --color-grey-500: #838383;
+  --color-grey-600: #575757;
+  --color-grey-700: #3b3b3b;
+  --color-grey-800: #252525;
+  --color-grey-900: #161616;
+
+  /* Fonte base da UI (não confundir com fontes dos projetos do usuário) */
+  --font-sans: var(--font-app-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-white-off text-black-night antialiased;
 }
