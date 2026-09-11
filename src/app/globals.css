@@ -60,7 +60,7 @@
 }
 
 body {
-  @apply bg-[var(--neu-bg)] text-black-night antialiased;
+  @apply bg-(--neu-bg) text-black-night antialiased;
 }
 
 :root {

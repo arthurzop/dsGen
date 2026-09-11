@@ -1,15 +1,17 @@
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { PresentationCanvas } from "@/components/canvas/PresentationCanvas";
+import { ExportMenu } from "@/components/canvas/ExportMenu";
 import { PageRegistryProvider } from "@/context/PageRegistryContext";
 
 export function EditorShell() {
   return (
     <PageRegistryProvider>
-      <div className="flex h-screen w-screen overflow-hidden">
-        <aside className="w-[20%] min-w-70 max-w-90 overflow-x-hidden overflow-y-auto">
+      <div className="flex h-screen w-screen overflow-hidden bg-white-off">
+        <aside className="w-[20%] min-w-70 max-w-90 overflow-y-auto overflow-x-hidden border-r border-grey-200/50 bg-white-off p-3">
           <Sidebar />
         </aside>
-        <main className="flex-1 overflow-y-auto">
+        <main className="relative flex-1 overflow-y-auto bg-white-off">
+          <ExportMenu />
           <PresentationCanvas />
         </main>
       </div>

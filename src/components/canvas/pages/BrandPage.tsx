@@ -1,19 +1,18 @@
 import { DsGenProject } from "@/types/project";
-import { ResolvedTokens } from "@/lib/tokens/resolveTokens";
-import { TypographySpecimen } from "./TypographySpecimen";
 
 interface BrandPageProps {
   project: DsGenProject;
-  tokens: ResolvedTokens;
 }
 
-export function BrandPage({ project, tokens }: BrandPageProps) {
+const HIERARCHY_LABELS = ["Dominante", "Secundária", "Suporte"];
+
+export function BrandPage({ project }: BrandPageProps) {
   const { logo, colors } = project.brandCore;
   const palette = colors.palette;
 
   return (
     <div
-      className="flex h-full w-full flex-col gap-6 overflow-y-auto p-12"
+      className="flex h-full w-full flex-col gap-10 p-8"
       style={{ fontFamily: "var(--token-font-family)" }}
     >
       <span
@@ -23,76 +22,78 @@ export function BrandPage({ project, tokens }: BrandPageProps) {
           color: "var(--token-color-dominant)",
         }}
       >
-       Brand
+        Brand
       </span>
 
-      <div className="grid grid-cols-2 gap-8">
-        <div className="flex flex-col gap-2">
+      <div className="grid flex-1 grid-cols-2 gap-14">
+        <div className="flex flex-col gap-3">
           <span
             className="text-grey-400"
             style={{ fontSize: "var(--token-font-size-caption)" }}
           >
             Logo
           </span>
-          {logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={logo.dataUrl}
-              alt="Logo"
-              className="max-h-16 max-w-full object-contain"
-            />
-          ) : (
-            <span
-              className="text-grey-300"
-              style={{ fontSize: "var(--token-font-size-body)" }}
-            >
-              —
-            </span>
-          )}
+          <div className="neu-inset flex flex-1 items-center justify-center rounded-2xl p-10">
+            {logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={logo.dataUrl}
+                alt="Logo"
+                className="max-h-32 max-w-full object-contain"
+              />
+            ) : (
+              <span
+                className="text-grey-300"
+                style={{ fontSize: "var(--token-font-size-body)" }}
+              >
+                Nenhum logo enviado
+              </span>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <span
             className="text-grey-400"
             style={{ fontSize: "var(--token-font-size-caption)" }}
           >
             Paleta
           </span>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-1 flex-col gap-2">
             {palette.length === 0 ? (
-              <span
-                className="text-grey-300"
-                style={{ fontSize: "var(--token-font-size-body)" }}
-              >
-                —
-              </span>
+              <div className="neu-inset flex flex-1 items-center justify-center rounded-2xl">
+                <span
+                  className="text-grey-300"
+                  style={{ fontSize: "var(--token-font-size-body)" }}
+                >
+                  Nenhuma cor definida
+                </span>
+              </div>
             ) : (
-              palette.map((color) => (
+              palette.map((color, index) => (
                 <div
                   key={color.id}
-                  className="h-8 w-8"
-                  style={{
-                    backgroundColor: color.hex,
-                    borderRadius: "var(--token-radius)",
-                  }}
-                />
+                  className="flex flex-1 items-center gap-4 rounded-2xl px-5"
+                  style={{ backgroundColor: color.hex }}
+                >
+                  <span
+                    className="font-mono font-medium text-white/90"
+                    style={{ fontSize: "var(--token-font-size-small)" }}
+                  >
+                    {color.hex.toUpperCase()}
+                  </span>
+                  <span
+                    className="ml-auto text-white/60"
+                    style={{ fontSize: "var(--token-font-size-caption)" }}
+                  >
+                    {HIERARCHY_LABELS[index] ??
+                      (index === 0 ? "Dominante" : "Accent")}
+                  </span>
+                </div>
               ))
             )}
           </div>
         </div>
-      </div>
-
-      <div className="flex flex-col gap-2 border-t border-grey-100 pt-4">
-        <span
-          className="text-grey-400"
-          style={{ fontSize: "var(--token-font-size-caption)" }}
-        >
-          Typography
-        </span>
-        <TypographySpecimen
-          fontFamily={tokens.fontFamily}
-          levels={tokens.specimenTypography}
-        />
       </div>
     </div>
   );

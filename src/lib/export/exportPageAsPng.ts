@@ -1,11 +1,30 @@
 import { toPng } from "html-to-image";
 
-export async function exportPageAsPng(node: HTMLElement, filename: string) {
+function resolveBackgroundColor(node: HTMLElement): string {
+  const computed = window.getComputedStyle(node);
+  const bg = computed.backgroundColor;
+  if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") return bg;
+
+  const firstChild = node.firstElementChild as HTMLElement | null;
+  if (firstChild) {
+    const childBg = window.getComputedStyle(firstChild).backgroundColor;
+    if (childBg && childBg !== "rgba(0, 0, 0, 0)" && childBg !== "transparent")
+      return childBg;
+  }
+
+  return "#ffffff";
+}
+
+export async function exportPageAsPng(
+  node: HTMLElement,
+  filename: string,
+  fontEmbedCSS: string,
+) {
   const dataUrl = await toPng(node, {
     pixelRatio: 2,
     cacheBust: true,
-    backgroundColor: "#ffffff",
-    skipFonts: false,
+    backgroundColor: resolveBackgroundColor(node),
+    fontEmbedCSS,
   });
 
   const link = document.createElement("a");

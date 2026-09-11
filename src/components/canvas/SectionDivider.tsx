@@ -10,7 +10,7 @@ interface SectionDividerProps {
  */
 export function SectionDivider({ number, label }: SectionDividerProps) {
   return (
-    <div className="flex w-full max-w-[900px] items-center gap-3 text-grey-400">
+    <div className="flex w-full max-w-225 items-center gap-3 text-grey-400">
       <span className="text-xs font-medium uppercase tracking-wide">
         {String(number).padStart(2, "0")} · {label}
       </span>

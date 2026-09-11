@@ -22,6 +22,7 @@ export interface ProjectMeta {
   client?: string;
   year?: string;
   description?: string;
+  type?: string;
   document: DocumentDimensions;
 }
 

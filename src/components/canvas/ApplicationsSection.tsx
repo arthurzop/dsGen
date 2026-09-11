@@ -37,7 +37,7 @@ export function ApplicationsSection({
             {Template ? (
               <Template project={project} tokens={tokens} />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-sm text-grey-300">
+              <div className="flex h-full w-full items-center justify-center text-sm text-grey-300 ">
                 Template "{app.templateId}" ainda não implementado
               </div>
             )}

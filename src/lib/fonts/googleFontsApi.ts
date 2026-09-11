@@ -2,15 +2,11 @@ import { FontWeightDefinition } from "@/types/project";
 
 export interface GoogleFontEntry {
   family: string;
-  variants: string[]; // ex: ["regular", "italic", "700", "700italic"]
+  variants: string[];
 }
 
 let cachedList: GoogleFontEntry[] | null = null;
 
-/**
- * Busca a lista de fontes UMA vez (não os arquivos de fonte em si, só metadados)
- * e mantém em memória + sessionStorage pra não bater na API a cada reload.
- */
 export async function fetchGoogleFontsList(): Promise<GoogleFontEntry[]> {
   if (cachedList) return cachedList;
 
@@ -49,9 +45,6 @@ export function searchGoogleFonts(
   return list.filter((f) => f.family.toLowerCase().includes(q)).slice(0, 20);
 }
 
-/**
- * Converte variants tipo "regular", "700", "700italic" em pesos numéricos utilizáveis.
- */
 export function parseVariants(variants: string[]): FontWeightDefinition[] {
   const seen = new Set<string>();
   const result: FontWeightDefinition[] = [];

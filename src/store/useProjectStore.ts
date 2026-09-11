@@ -83,6 +83,10 @@ interface ProjectStore {
   //logo
   setLogo: (logo: DsGenProject["brandCore"]["logo"]) => void;
   removeLogo: () => void;
+
+  updateProjectMeta: (
+    patch: Partial<Omit<DsGenProject["meta"], "document">>,
+  ) => void;
 }
 
 function touch(project: DsGenProject): DsGenProject {
@@ -261,6 +265,13 @@ export const useProjectStore = create<ProjectStore>()(
           }),
         })),
 
+      updateProjectMeta: (patch) =>
+        set((state) => ({
+          project: touch({
+            ...state.project,
+            meta: { ...state.project.meta, ...patch },
+          }),
+        })),
       removeApplication: (id) =>
         set((state) => ({
           project: touch({
@@ -271,6 +282,7 @@ export const useProjectStore = create<ProjectStore>()(
 
       resetProject: () => set({ project: createDefaultProject() }),
     }),
+    
     {
       name: "dsgen-project", // chave no localStorage
       version: SCHEMA_VERSION,

@@ -59,8 +59,6 @@ export function TypographySection() {
 
   return (
     <>
-      
-
       <div className="flex items-center gap-2 rounded-md border border-grey-200 px-3 py-2">
         <span
           className="text-lg"
@@ -106,30 +104,30 @@ export function TypographySection() {
         )}
       </div>
 
-      <label className="flex flex-col gap-1 text-sm">
+      <div className="flex flex-col gap-1.5 text-sm">
         <span className="flex justify-between text-xs text-grey-500">
           Font Ratio
           <span className="font-mono">{typography.scaleRatio.toFixed(3)}</span>
         </span>
-        <input
-          type="range"
-          min={0}
-          max={FONT_RATIO_PRESETS.length - 1}
-          step={1}
-          value={FONT_RATIO_PRESETS.findIndex(
-            (r) => Math.abs(r - typography.scaleRatio) < 0.001,
-          )}
-          onChange={(e) => {
-            const preset = FONT_RATIO_PRESETS[Number(e.target.value)];
-            setFontRatio(preset);
-          }}
-          className="accent-tiger-500"
-        />
-        <div className="flex justify-between text-[10px] text-grey-400">
-          <span>1.067</span>
-          <span>1.618</span>
+        <div className="grid grid-cols-4 gap-1.5">
+          {FONT_RATIO_PRESETS.map((ratio) => {
+            const isActive = Math.abs(ratio - typography.scaleRatio) < 0.001;
+            return (
+              <button
+                key={ratio}
+                onClick={() => setFontRatio(ratio)}
+                className={`rounded-lg py-1.5 text-[11px] font-mono transition-colors cursor-pointer ${
+                  isActive
+                    ? "neu-inset text-tiger-600 "
+                    : "neu-surface text-grey-500 hover:text-tiger-500 hover:bg-neutral-200"
+                }`}
+              >
+                {ratio}
+              </button>
+            );
+          })}
         </div>
-      </label>
+      </div>
     </>
   );
 }

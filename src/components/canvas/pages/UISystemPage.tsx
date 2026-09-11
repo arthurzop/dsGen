@@ -5,7 +5,6 @@ import { Checkbox } from "@/components/ui-kit/Checkbox";
 import { Radio } from "@/components/ui-kit/Radio";
 import { Switch } from "@/components/ui-kit/Switch";
 import { Badge } from "@/components/ui-kit/Badge";
-import { Card } from "@/components/ui-kit/Card";
 import { Alert } from "@/components/ui-kit/Alert";
 import { Tabs } from "@/components/ui-kit/Tabs";
 import { Avatar } from "@/components/ui-kit/Avatar";
@@ -21,7 +20,7 @@ function Group({
     <div className="flex flex-col gap-2">
       <span
         className="uppercase tracking-wide text-grey-400"
-        style={{ fontSize: "var(--token-font-size-caption)" }}
+        style={{ fontSize: "12px" }}
       >
         {label}
       </span>
@@ -37,7 +36,7 @@ interface UiSystemPageProps {
 export function UiSystemPage({ sectionNumber }: UiSystemPageProps) {
   return (
     <div
-      className="grid h-full w-full grid-cols-3 gap-8 p-12"
+      className="grid w-full grid-cols-3 gap-8 p-12"
       style={{ fontFamily: "var(--token-font-family)" }}
     >
       <span
@@ -62,6 +61,9 @@ export function UiSystemPage({ sectionNumber }: UiSystemPageProps) {
         <div className="flex flex-wrap gap-2">
           <Badge label="Novo" />
           <Badge label="Beta" />
+          <Badge label="123" />
+          <Badge label="Alpha" />
+          <Badge label="Versões" />
         </div>
       </Group>
 
@@ -86,7 +88,7 @@ export function UiSystemPage({ sectionNumber }: UiSystemPageProps) {
 
       <Group label="Checkbox / Radio">
         <div className="flex flex-col gap-2">
-          <Checkbox label="Selecionado" />
+          <Checkbox />
           <Radio options={["Ativo", "Inativo"]} />
         </div>
       </Group>
@@ -98,14 +100,6 @@ export function UiSystemPage({ sectionNumber }: UiSystemPageProps) {
       <Group label="Alert">
         <Alert />
       </Group>
-
-      <div className="col-span-3">
-        <Group label="Card">
-          <div className="max-w-xs">
-            <Card />
-          </div>
-        </Group>
-      </div>
     </div>
   );
 }

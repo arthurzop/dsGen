@@ -38,7 +38,7 @@ export function TypographySpecimen({
             key={level}
             className="flex items-baseline gap-3 border-b border-grey-100 pb-1.5"
           >
-            <span className="w-14 shrink-0 font-mono text-[9px] uppercase text-grey-400">
+            <span className="w-14 shrink-0 font-mono text-[12px] uppercase text-grey-400">
               {LEVEL_LABELS[level]}
             </span>
             <span
@@ -51,31 +51,35 @@ export function TypographySpecimen({
             >
               Aa
             </span>
-            <span className="shrink-0 font-mono text-[9px] text-grey-400">
+            <span className="shrink-0 font-mono text-[12px] text-grey-400">
               {def.sizeRem}rem · {def.weight}
             </span>
           </div>
         );
       })}
 
-      <div className="flex flex-col gap-0.5 pt-2">
-        <span className="font-mono text-[9px] uppercase text-grey-400">
-          Caracteres
-        </span>
-        <p className="text-sm leading-snug">
-          ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          <br />
-          abcdefghijklmnopqrstuvwxyz
-          <br />
-          0123456789 !@#$%&*()
-        </p>
-      </div>
+      <div className="flex gap-10">
+        <div className="flex flex-col gap-0.5 pt-2">
+          <span className="font-mono text-[12px] uppercase text-grey-400">
+            Caracteres
+          </span>
+          <p className="text-sm leading-snug">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+            <br />
+            abcdefghijklmnopqrstuvwxyz
+            <br />
+            0123456789 !@#$%&*()
+          </p>
+        </div>
 
-      <div className="flex flex-col gap-0.5">
-        <span className="font-mono text-[9px] uppercase text-grey-400">
-          Pangrama
-        </span>
-        <p className="text-sm">The quick brown fox jumps over the lazy dog.</p>
+        <div className="flex flex-col gap-0.5">
+          <span className="font-mono text-[12px] uppercase text-grey-400">
+            Pangrama
+          </span>
+          <p className="text-3xl">
+            The quick brown fox jumps over the lazy dog.
+          </p>
+        </div>
       </div>
     </div>
   );

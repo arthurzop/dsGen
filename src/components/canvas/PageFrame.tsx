@@ -26,7 +26,7 @@ export function PageFrame({
     <div
       ref={(node) => registerPage(pageId, node)}
       style={style}
-      className="w-full max-w-225 overflow-hidden rounded-lg bg-white-true shadow-md"
+      className="w-full max-w-225 overflow-hidden rounded-lg bg-white-true shadow-md "
       data-page-frame
       data-page-id={pageId}
     >

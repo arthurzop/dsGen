@@ -1,56 +1,98 @@
 import { ApplicationTemplateProps } from "@/lib/applications/templateRegistry";
 
-/**
- * Slots fixos: background (dominante→secundária), blob decorativo (accent),
- * headline (nome/subtitle do projeto), logo. Nenhum deles reage a "quantas
- * cores existem" além de ler dominant/secondary/accent já resolvidos —
- * isso é o que evita virar um motor de composição livre.
- */
 export function PosterTemplate({ project, tokens }: ApplicationTemplateProps) {
-  const { logo, colors } = {
-    logo: project.brandCore.logo,
-    colors: tokens.colors,
-  };
+  const logo = project.brandCore.logo;
+  const colors = tokens.colors;
+  const swatches = colors.all.slice(0, 5);
+  const headline = project.meta.subtitle || project.meta.name || "Untitled";
 
   return (
     <div
-      className="relative flex h-full w-full flex-col justify-end overflow-hidden p-10"
+      className="relative flex h-full w-full flex-col overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, ${colors.dominant}, ${colors.secondary})`,
+        backgroundColor: colors.dominant,
         fontFamily: "var(--token-font-family)",
       }}
     >
-      {/* Blob decorativo — slot fixo de accent */}
       <div
-        className="absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-70 blur-2xl"
+        className="absolute -bottom-32 -right-24 size-105 rounded-full opacity-60 blur-3xl"
         style={{ backgroundColor: colors.accent }}
       />
+      <div
+        className="absolute -left-20 -top-24 h-64 w-64 rounded-full opacity-40 blur-3xl"
+        style={{ backgroundColor: colors.secondary }}
+      />
 
-      {/* Logo — canto superior esquerdo, sempre a mesma posição */}
-      {logo && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={logo.dataUrl}
-          alt="Logo"
-          className="absolute left-10 top-10 max-h-8 max-w-[120px] object-contain"
-          style={{ filter: logo.hasTransparency ? "none" : "invert(1)" }}
-        />
-      )}
+      <div className="relative z-10 flex items-center justify-between px-10 pt-10">
+        {logo ? (
+          <div className="flex h-9 items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
 
-      {/* Headline — slot fixo, nunca mais de 2 linhas por design */}
-      <h2
-        className="relative z-10 max-w-[80%] font-bold leading-tight text-white-true"
-        style={{ fontSize: "var(--token-font-size-h1)" }}
+            <img
+              src={logo.dataUrl}
+              alt="Logo"
+              className="h-10 rounded max-w-25 object-contain"
+            />
+            <img
+              src={logo.dataUrl}
+              alt="Logo"
+              className="h-10 rounded-full max-w-25 object-contain"
+            />
+          </div>
+        ) : (
+          <span
+            className="rounded-full px-4 py-1.5 text-white/90"
+            style={{
+              backgroundColor: colors.secondary,
+              fontSize: "var(--token-font-size-caption)",
+            }}
+          >
+            {project.meta.name || "Untitled"}
+          </span>
+        )}
+
+        <span
+          className="uppercase tracking-[0.2em] text-white/60"
+          style={{ fontSize: "var(--token-font-size-caption)" }}
+        >
+          {project.meta.year || new Date().getFullYear()}
+        </span>
+      </div>
+
+      <div className="relative z-10 flex flex-1 flex-col justify-center px-10">
+        <h1
+          className="font-black leading-[0.95] text-white-true"
+          style={{ fontSize: "clamp(2.5rem, 9vw, 6rem)" }}
+        >
+          {headline}
+        </h1>
+      </div>
+
+      <div
+        className="relative z-10 flex items-end justify-between px-10 pb-10"
+        style={{
+          background: "linear-gradient(180deg, transparent, rgba(0,0,0,0.25))",
+          marginTop: "-4rem",
+          paddingTop: "4rem",
+        }}
       >
-        {project.meta.subtitle || project.meta.name || "Untitled"}
-      </h2>
+        <div className="flex gap-2 flex-wrap">
+          {swatches.map((hex, i) => (
+            <div
+              key={`${hex}-${i}`}
+              className="h-6 w-6 rounded-full border border-white/10"
+              style={{ backgroundColor: hex }}
+            />
+          ))}
+        </div>
 
-      <span
-        className="relative z-10 mt-2 text-white-true/70"
-        style={{ fontSize: "var(--token-font-size-small)" }}
-      >
-        {project.meta.name}
-      </span>
+        <span
+          className="uppercase tracking-[0.15em] text-white/50"
+          style={{ fontSize: "var(--token-font-size-caption)" }}
+        >
+          {project.meta.name} · Brand
+        </span>
+      </div>
     </div>
   );
 }

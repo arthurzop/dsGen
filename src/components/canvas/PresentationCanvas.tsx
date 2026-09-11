@@ -10,6 +10,8 @@ import { BrandPage } from "./pages/BrandPage";
 import { ApplicationsSection } from "./ApplicationsSection";
 import { UiSystemPage } from "./pages/UISystemPage";
 import { SectionDivider } from "./SectionDivider";
+import { TypographyPage } from "./pages/TypographyPage";
+import { FitToFrame } from "./FitToFrame";
 
 export function PresentationCanvas() {
   const project = useProjectStore((s) => s.project);
@@ -26,7 +28,18 @@ export function PresentationCanvas() {
 
       <SectionDivider number={sectionNumbers.brand} label="Brand" />
       <PageFrame pageId="brand" aspectRatio={aspectRatio} tokens={tokens}>
-        <BrandPage project={project} tokens={tokens} />
+        <BrandPage project={project} />
+      </PageFrame>
+
+      <SectionDivider number={sectionNumbers.typography} label="Typography" />
+
+      <PageFrame pageId="typography" aspectRatio={aspectRatio} tokens={tokens}>
+        <FitToFrame>
+          <TypographyPage
+            fontFamily={tokens.fontFamily}
+            levels={tokens.specimenTypography}
+          />
+        </FitToFrame>
       </PageFrame>
 
       <ApplicationsSection
@@ -46,7 +59,9 @@ export function PresentationCanvas() {
             aspectRatio={aspectRatio}
             tokens={tokens}
           >
-            <UiSystemPage sectionNumber={sectionNumbers.uiSystem ?? 0} />
+            <FitToFrame>
+              <UiSystemPage sectionNumber={sectionNumbers.uiSystem ?? 0} />
+            </FitToFrame>
           </PageFrame>
         </>
       )}
