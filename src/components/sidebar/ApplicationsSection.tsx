@@ -18,11 +18,7 @@ export function ApplicationsSidebarSection() {
   const removeApplication = useProjectStore((s) => s.removeApplication);
 
   return (
-    <section className="flex flex-col gap-3">
-      <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-        Applications
-      </span>
-
+    <>
       {applications.map((app) => (
         <div
           key={app.id}
@@ -54,6 +50,6 @@ export function ApplicationsSidebarSection() {
           );
         })}
       </div>
-    </section>
+    </>
   );
 }

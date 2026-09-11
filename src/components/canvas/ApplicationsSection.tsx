@@ -3,15 +3,18 @@ import { ResolvedTokens } from "@/lib/tokens/resolveTokens";
 import { getAspectRatio } from "@/lib/documentFormats";
 import { TEMPLATE_REGISTRY } from "@/lib/applications/templateRegistry";
 import { PageFrame } from "./PageFrame";
+import { SectionDivider } from "./SectionDivider";
 
 interface ApplicationsSectionProps {
   project: DsGenProject;
   tokens: ResolvedTokens;
+  sectionNumber: number;
 }
 
 export function ApplicationsSection({
   project,
   tokens,
+  sectionNumber,
 }: ApplicationsSectionProps) {
   const enabledApps = project.applications.filter((app) => app.enabled);
   if (enabledApps.length === 0) return null;
@@ -20,16 +23,10 @@ export function ApplicationsSection({
 
   return (
     <>
-      <div className="flex w-full max-w-[900px] items-center gap-3 text-grey-400">
-        <span className="text-xs font-medium uppercase tracking-wide">
-          04 · Applications
-        </span>
-        <div className="h-px flex-1 bg-grey-200" />
-      </div>
+      <SectionDivider number={sectionNumber} label="Applications" />
 
       {enabledApps.map((app) => {
         const Template = TEMPLATE_REGISTRY[app.templateId];
-
         return (
           <PageFrame
             key={app.id}
@@ -37,7 +34,6 @@ export function ApplicationsSection({
             aspectRatio={aspectRatio}
             tokens={tokens}
           >
-            {" "}
             {Template ? (
               <Template project={project} tokens={tokens} />
             ) : (

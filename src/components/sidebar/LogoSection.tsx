@@ -38,11 +38,7 @@ export function LogoSection() {
   }
 
   return (
-    <section className="flex flex-col gap-3">
-      <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-        Logo
-      </span>
-
+    <>
       {logo ? (
         <div className="flex flex-col gap-2 rounded-md border border-grey-200 p-3">
           <div
@@ -69,7 +65,7 @@ export function LogoSection() {
             </span>
             <button
               onClick={removeLogo}
-              className="text-grey-400 hover:text-bubblegum-600"
+              className=" cursor-pointer text-grey-400 hover:text-bubblegum-600"
             >
               <X size={12} />
             </button>
@@ -77,7 +73,7 @@ export function LogoSection() {
 
           <button
             onClick={() => inputRef.current?.click()}
-            className="text-xs text-tiger-500 hover:underline"
+            className="cursor-pointer text-xs text-tiger-500 hover:underline"
           >
             Substituir
           </button>
@@ -86,7 +82,7 @@ export function LogoSection() {
         <button
           onClick={() => inputRef.current?.click()}
           disabled={isProcessing}
-          className="flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-grey-300 py-6 text-grey-500 hover:border-tiger-500 hover:text-tiger-500"
+          className="cursor-pointer flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-grey-300 py-6 text-grey-500 hover:border-tiger-500 hover:text-tiger-500"
         >
           <Upload size={16} />
           <span className="text-xs">
@@ -101,9 +97,9 @@ export function LogoSection() {
         ref={inputRef}
         type="file"
         accept=".svg,.png,.jpg,.jpeg"
-        className="hidden"
+        className="hidden neu-inset border-0"
         onChange={(e) => handleFile(e.target.files?.[0])}
       />
-    </section>
+    </>
   );
 }

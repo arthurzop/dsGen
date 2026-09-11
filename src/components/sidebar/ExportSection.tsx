@@ -26,6 +26,9 @@ export function ExportSection() {
     ...project.applications
       .filter((a) => a.enabled)
       .map((a) => ({ id: a.id, label: TEMPLATE_LABELS[a.templateId] })),
+    ...(project.uiSystem.enabled
+      ? [{ id: "ui-system", label: "UI System" }]
+      : []),
   ];
 
   function toggle(id: string) {
@@ -76,11 +79,7 @@ export function ExportSection() {
   }
 
   return (
-    <section className="flex flex-col gap-3">
-      <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-        Export
-      </span>
-
+    <>
       <button
         onClick={handleExportPdf}
         disabled={exportingPdf}
@@ -117,6 +116,6 @@ export function ExportSection() {
         <Download size={14} />
         {exportingPng ? "Exportando..." : "Exportar selecionadas"}
       </button>
-    </section>
+    </>
   );
 }

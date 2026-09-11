@@ -58,10 +58,8 @@ export function TypographySection() {
   const results = query ? searchGoogleFonts(allFonts, query) : [];
 
   return (
-    <section className="flex flex-col gap-3">
-      <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-        Typography
-      </span>
+    <>
+      
 
       <div className="flex items-center gap-2 rounded-md border border-grey-200 px-3 py-2">
         <span
@@ -132,6 +130,6 @@ export function TypographySection() {
           <span>1.618</span>
         </div>
       </label>
-    </section>
+    </>
   );
 }

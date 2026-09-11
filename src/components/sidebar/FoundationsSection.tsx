@@ -19,10 +19,8 @@ export function FoundationsSection() {
   const setSpacingBase = useProjectStore((s) => s.setSpacingBase);
 
   return (
-    <section className="flex flex-col gap-4">
-      <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-        Foundations
-      </span>
+    <>
+      
 
       <div className="flex flex-col gap-2">
         <span className="text-sm">Border Radius</span>
@@ -63,6 +61,6 @@ export function FoundationsSection() {
           ))}
         </div>
       </div>
-    </section>
+    </>
   );
 }

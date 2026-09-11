@@ -13,6 +13,10 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import {
+  restrictToVerticalAxis,
+  restrictToParentElement,
+} from "@dnd-kit/modifiers";
 import { Plus } from "lucide-react";
 import { useProjectStore } from "@/store/useProjectStore";
 import { SortableColorItem } from "./SortableColorItem";
@@ -42,12 +46,9 @@ export function ColorSection() {
   }
 
   return (
-    <section className="flex flex-col gap-3">
+    <>
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wide text-grey-500">
-          Colors
-        </span>
-        <span className="text-[10px] text-grey-400">{palette.length}</span>
+        <span className="text-[10px] text-grey-400">{palette.length} Colors</span>
       </div>
 
       {palette.length === 0 && (
@@ -60,6 +61,7 @@ export function ColorSection() {
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
       >
         <SortableContext
           items={palette.map((c) => c.id)}
@@ -93,6 +95,6 @@ export function ColorSection() {
           <Plus size={14} /> Adicionar cor
         </button>
       </div>
-    </section>
+    </>
   );
 }

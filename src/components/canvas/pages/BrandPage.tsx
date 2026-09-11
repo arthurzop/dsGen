@@ -1,16 +1,19 @@
 import { DsGenProject } from "@/types/project";
+import { ResolvedTokens } from "@/lib/tokens/resolveTokens";
+import { TypographySpecimen } from "./TypographySpecimen";
 
 interface BrandPageProps {
   project: DsGenProject;
+  tokens: ResolvedTokens;
 }
 
-export function BrandPage({ project }: BrandPageProps) {
-  const { logo, typography, colors } = project.brandCore;
+export function BrandPage({ project, tokens }: BrandPageProps) {
+  const { logo, colors } = project.brandCore;
   const palette = colors.palette;
 
   return (
     <div
-      className="flex h-full w-full flex-col gap-8 p-12"
+      className="flex h-full w-full flex-col gap-6 overflow-y-auto p-12"
       style={{ fontFamily: "var(--token-font-family)" }}
     >
       <span
@@ -20,11 +23,10 @@ export function BrandPage({ project }: BrandPageProps) {
           color: "var(--token-color-dominant)",
         }}
       >
-        02 · Brand
+       Brand
       </span>
 
-      <div className="grid grid-cols-3 gap-8">
-        {/* Logo */}
+      <div className="grid grid-cols-2 gap-8">
         <div className="flex flex-col gap-2">
           <span
             className="text-grey-400"
@@ -49,32 +51,6 @@ export function BrandPage({ project }: BrandPageProps) {
           )}
         </div>
 
-        {/* Typography */}
-        <div className="flex flex-col gap-2">
-          <span
-            className="text-grey-400"
-            style={{ fontSize: "var(--token-font-size-caption)" }}
-          >
-            Tipografia
-          </span>
-          <span
-            className="font-bold"
-            style={{
-              fontSize: "var(--token-font-size-h1)",
-              fontFamily: "var(--token-font-family)",
-            }}
-          >
-            Aa
-          </span>
-          <span
-            className="text-grey-500"
-            style={{ fontSize: "var(--token-font-size-small)" }}
-          >
-            {typography.primaryFont.family}
-          </span>
-        </div>
-
-        {/* Colors */}
         <div className="flex flex-col gap-2">
           <span
             className="text-grey-400"
@@ -104,6 +80,19 @@ export function BrandPage({ project }: BrandPageProps) {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-col gap-2 border-t border-grey-100 pt-4">
+        <span
+          className="text-grey-400"
+          style={{ fontSize: "var(--token-font-size-caption)" }}
+        >
+          Typography
+        </span>
+        <TypographySpecimen
+          fontFamily={tokens.fontFamily}
+          levels={tokens.specimenTypography}
+        />
       </div>
     </div>
   );

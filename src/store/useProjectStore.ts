@@ -19,7 +19,7 @@ function createDefaultProject(): DsGenProject {
     id: generateId(),
     meta: {
       name: "Untitled",
-      document: { format: "a4-portrait" },
+      document: { format: "16-9" },
     },
     brandCore: {
       typography: {

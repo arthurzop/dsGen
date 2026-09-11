@@ -5,8 +5,8 @@ import { PageRegistryProvider } from "@/context/PageRegistryContext";
 export function EditorShell() {
   return (
     <PageRegistryProvider>
-      <div className="flex h-screen w-screen overflow-hidden bg-white-off">
-        <aside className="w-[20%] min-w-70 max-w-90 border-r border-grey-200 bg-white-true overflow-y-auto">
+      <div className="flex h-screen w-screen overflow-hidden">
+        <aside className="w-[20%] min-w-70 max-w-90 overflow-x-hidden overflow-y-auto">
           <Sidebar />
         </aside>
         <main className="flex-1 overflow-y-auto">

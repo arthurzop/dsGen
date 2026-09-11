@@ -16,6 +16,7 @@ export const DEFAULT_FOUNDATIONS = {
 };
 
 export const DEFAULT_FONT_RATIO = 1.25;
+export const FIXED_DOCUMENT_RATIO = 1.25;
 
 // Peso padrão por nível — usuário pode sobrescrever depois, isso é só o ponto de partida
 export const DEFAULT_LEVEL_WEIGHTS = {
