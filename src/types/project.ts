@@ -54,7 +54,7 @@ export interface FontDefinition {
   source: FontSource;
   family: string;
   weights: FontWeightDefinition[];
-  // só existe quando source === "custom"
+  activeWeightIndex?: number;
   customFile?: {
     dataUrl: string;
     format: "woff" | "woff2" | "ttf" | "otf";

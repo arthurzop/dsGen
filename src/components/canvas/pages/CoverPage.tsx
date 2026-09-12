@@ -39,8 +39,12 @@ export function CoverPage({ project }: CoverPageProps) {
 
       <div className="flex flex-col gap-2">
         <h1
-          className="font-bold leading-none text-white-true"
-          style={{ fontSize: "var(--token-font-size-display)" }}
+          className="leading-none text-white-true"
+          style={{
+            fontSize: "var(--token-font-size-display)",
+            fontWeight: "var(--token-font-weight)",
+            fontStyle: "var(--token-font-style)",
+          }}
         >
           {name || "Untitled"}
         </h1>

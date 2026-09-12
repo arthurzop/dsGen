@@ -19,6 +19,7 @@ export function ApplicationsSidebarSection() {
 
   return (
     <>
+      <span className="text-xs text-grey-500">Active</span>
       {applications.map((app) => (
         <div
           key={app.id}
@@ -33,6 +34,7 @@ export function ApplicationsSidebarSection() {
           </button>
         </div>
       ))}
+      <span className="text-xs text-grey-500">Add more:</span>
 
       <div className="flex flex-wrap gap-2">
         {AVAILABLE_TEMPLATES.map((templateId) => {

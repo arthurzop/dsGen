@@ -45,7 +45,7 @@ export function SortableColorItem({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-2 rounded-md border border-grey-200 bg-white-true px-2 py-2"
+      className="flex items-center gap-2 rounded-md border border-grey-200 bg-white-true px-2 py-2 "
     >
       <button
         {...attributes}
@@ -60,7 +60,7 @@ export function SortableColorItem({
         type="color"
         value={color.hex}
         onChange={(e) => onUpdate(color.id, e.target.value)}
-        className="h-7 w-7 shrink-0 cursor-pointer rounded border border-grey-200 p-0"
+        className="w-10 shrink-0 cursor-pointer rounded-full"
       />
 
       <div className="flex flex-1 flex-col">
@@ -75,7 +75,7 @@ export function SortableColorItem({
 
       <button
         onClick={() => onRemove(color.id)}
-        className="text-grey-400 hover:text-bubblegum-600"
+        className="text-grey-400 hover:text-bubblegum-600 cursor-pointer"
         aria-label="Remover cor"
       >
         <X size={14} />

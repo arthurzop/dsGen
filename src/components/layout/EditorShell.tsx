@@ -10,7 +10,15 @@ export function EditorShell() {
         <aside className="w-[20%] min-w-70 max-w-90 overflow-y-auto overflow-x-hidden border-r border-grey-200/50 bg-white-off p-3">
           <Sidebar />
         </aside>
-        <main className="relative flex-1 overflow-y-auto bg-white-off">
+        <main
+          className="relative flex-1 overflow-y-auto"
+          style={{
+            backgroundColor: "var(--color-white-off)",
+            backgroundImage:
+              "radial-gradient(circle, var(--color-grey-200) 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+        >
           <ExportMenu />
           <PresentationCanvas />
         </main>

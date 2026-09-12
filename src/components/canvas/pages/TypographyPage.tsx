@@ -8,7 +8,7 @@ interface TypographyPageProps {
 
 export function TypographyPage({ fontFamily, levels }: TypographyPageProps) {
   return (
-    <div className="flex w-full flex-col gap-10 p-8 h-auto">
+    <div className="flex flex-col gap-10 p-8 h-auto">
       <span
         className="font-medium uppercase tracking-wide"
         style={{

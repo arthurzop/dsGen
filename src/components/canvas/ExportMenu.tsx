@@ -61,13 +61,22 @@ export function ExportMenu() {
 
   async function getFontEmbedCss(): Promise<string> {
     const font = project.brandCore.typography.primaryFont;
-    if (font.source !== "google") return "";
 
-    const href = buildGoogleFontHref(
-      font.family,
-      font.weights.map((w) => w.weight),
-    );
-    return fetchFontEmbedCss(href);
+    if (font.source === "google") {
+      const href = buildGoogleFontHref(
+        font.family,
+        font.weights.map((w) => w.weight),
+      );
+      return fetchFontEmbedCss(href);
+    }
+
+    if (font.source === "custom" && font.customFile) {
+      const weight = font.weights[0]?.weight ?? 400;
+      const style = font.weights[0]?.style ?? "normal";
+      return `@font-face { font-family: '${font.family}'; src: url(${font.customFile.dataUrl}); font-weight: ${weight}; font-style: ${style}; }`;
+    }
+
+    return "";
   }
 
   async function handleExportPng() {

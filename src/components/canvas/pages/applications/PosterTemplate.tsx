@@ -61,8 +61,12 @@ export function PosterTemplate({ project, tokens }: ApplicationTemplateProps) {
 
       <div className="relative z-10 flex flex-1 flex-col justify-center px-10">
         <h1
-          className="font-black leading-[0.95] text-white-true"
-          style={{ fontSize: "clamp(2.5rem, 9vw, 6rem)" }}
+          className="leading-[0.95] text-white-true"
+          style={{
+            fontSize: "clamp(2.5rem, 9vw, 6rem)",
+            fontWeight: "var(--token-font-weight)",
+            fontStyle: "var(--token-font-style)",
+          }}
         >
           {headline}
         </h1>

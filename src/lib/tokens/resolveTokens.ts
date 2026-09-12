@@ -1,4 +1,8 @@
-import { DsGenProject, TypographySystem } from "@/types/project";
+import {
+  DsGenProject,
+  TypographySystem,
+  FontDefinition,
+} from "@/types/project";
 import {
   RADIUS_PX_MAP,
   DEFAULT_FOUNDATIONS,
@@ -21,6 +25,8 @@ export interface ResolvedTokens {
   gridColumns: number;
   shadowLevels: 1 | 2 | 3;
   fontFamily: string;
+  fontWeight: number;
+  fontStyle: "normal" | "italic";
   documentTypography: TypographySystem["levels"];
   specimenTypography: TypographySystem["levels"];
   css: Record<string, string>;
@@ -41,6 +47,20 @@ function resolveColorRoles(
   };
 }
 
+function resolveSelectedWeight(font: FontDefinition): {
+  weight: number;
+  style: "normal" | "italic";
+} {
+  if (font.source === "google") {
+    const index = font.activeWeightIndex ?? 0;
+    const active = font.weights[index] ?? font.weights[0];
+    return { weight: active?.weight ?? 400, style: active?.style ?? "normal" };
+  }
+
+  const active = font.weights[0];
+  return { weight: active?.weight ?? 400, style: active?.style ?? "normal" };
+}
+
 const documentLevelsCache = computeTypographyLevels(FIXED_DOCUMENT_RATIO);
 
 export function resolveTokens(project: DsGenProject): ResolvedTokens {
@@ -57,6 +77,10 @@ export function resolveTokens(project: DsGenProject): ResolvedTokens {
     foundations.shadowLevels ?? DEFAULT_FOUNDATIONS.shadowLevels;
 
   const fontFamily = brandCore.typography.primaryFont.family || "Inter";
+  const { weight: fontWeight, style: fontStyle } = resolveSelectedWeight(
+    brandCore.typography.primaryFont,
+  );
+
   const documentTypography = documentLevelsCache;
   const specimenTypography = brandCore.typography.levels;
 
@@ -68,6 +92,8 @@ export function resolveTokens(project: DsGenProject): ResolvedTokens {
     "--token-radius": `${radiusPx}px`,
     "--token-spacing": `${spacingPx}px`,
     "--token-font-family": fontFamily,
+    "--token-font-weight": String(fontWeight),
+    "--token-font-style": fontStyle,
     "--token-font-size-display": `${documentTypography.display.sizeRem}rem`,
     "--token-font-size-h1": `${documentTypography.h1.sizeRem}rem`,
     "--token-font-size-h2": `${documentTypography.h2.sizeRem}rem`,
@@ -84,6 +110,8 @@ export function resolveTokens(project: DsGenProject): ResolvedTokens {
     gridColumns,
     shadowLevels,
     fontFamily,
+    fontWeight,
+    fontStyle,
     documentTypography,
     specimenTypography,
     css,

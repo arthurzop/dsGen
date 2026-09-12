@@ -28,7 +28,7 @@ export function ColorSection() {
   const updateColor = useProjectStore((s) => s.updateColor);
   const reorderColors = useProjectStore((s) => s.reorderColors);
 
-  const [newColorHex, setNewColorHex] = useState("#F5642F");
+  const [newColorHex, setNewColorHex] = useState("#f8f9fa");
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -48,7 +48,7 @@ export function ColorSection() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-grey-400">{palette.length} Colors</span>
+        <span className="text-xs text-grey-500">{palette.length} Colors</span>
       </div>
 
       {palette.length === 0 && (
@@ -86,11 +86,11 @@ export function ColorSection() {
           type="color"
           value={newColorHex}
           onChange={(e) => setNewColorHex(e.target.value)}
-          className="h-8 w-8 cursor-pointer rounded border border-grey-200 p-0"
+          className="w-10 shrink-0 cursor-pointer rounded-full"
         />
         <button
           onClick={() => addColor(newColorHex)}
-          className="flex flex-1 items-center justify-center gap-1 rounded-md border border-dashed border-grey-300 py-2 text-xs text-grey-500 hover:border-tiger-500 hover:text-tiger-500"
+          className="flex flex-1 items-center justify-center gap-1 rounded-md border border-dashed border-grey-300 py-2 text-xs text-grey-500 hover:border-tiger-500 hover:text-tiger-500 cursor-pointer"
         >
           <Plus size={14} /> Adicionar cor
         </button>

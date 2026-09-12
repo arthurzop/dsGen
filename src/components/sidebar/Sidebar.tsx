@@ -137,16 +137,15 @@ export function Sidebar() {
         <ApplicationsSidebarSection />
       </SidebarSection>
 
-      <SidebarSection icon={Sliders} title="Foundations">
-        <FoundationsSection />
-      </SidebarSection>
-
       <SidebarSection
         icon={ToggleLeft}
         title="UI System"
         badge={uiEnabled ? "ativo" : "opcional"}
       >
         <UiSystemToggle />
+      </SidebarSection>
+      <SidebarSection icon={Sliders} title="Foundations">
+        <FoundationsSection />
       </SidebarSection>
     </div>
   );

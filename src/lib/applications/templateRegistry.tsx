@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 import { ApplicationTemplateId, DsGenProject } from "@/types/project";
 import { ResolvedTokens } from "@/lib/tokens/resolveTokens";
-import { PosterTemplate } from "./PosterTemplate";
+import { PosterTemplate } from "../../components/canvas/pages/applications/PosterTemplate";
 
 export interface ApplicationTemplateProps {
   project: DsGenProject;
