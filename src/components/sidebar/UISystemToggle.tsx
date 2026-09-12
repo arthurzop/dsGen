@@ -18,7 +18,7 @@ export function UiSystemToggle() {
         <span
           className="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-200"
           style={{
-            transform: enabled ? "translateX(-20px)" : "translateX(2px)",
+            transform: enabled ? "translateX(0px)" : "translateX(-20px)",
           }}
         />
       </button>
