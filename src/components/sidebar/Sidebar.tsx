@@ -143,9 +143,12 @@ export function Sidebar() {
         badge={uiEnabled ? "ativo" : "opcional"}
       >
         <UiSystemToggle />
-      </SidebarSection>
-      <SidebarSection icon={Sliders} title="Foundations">
-        <FoundationsSection />
+
+        {uiEnabled && (
+          <>
+            <div className="neu-divider" /> <FoundationsSection />
+          </>
+        )}
       </SidebarSection>
     </div>
   );
